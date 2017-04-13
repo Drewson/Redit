@@ -2,18 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './containers/App';
-import MainLayout from './layouts/MainLayout';
-import Categories from './containers/Categories';
-import CreatePost from './containers/CreatePost';
-import Login from './containers/Login';
-import NotFound from './containers/NotFound';
 import PostList from './containers/PostList';
-import Welcome from './containers/Welcome';
+import Categories from './containers/Categories';
+import MainLayout from './layouts/MainLayout';
 
-import {HeaderBar} from './components/HeaderBar';
-import {Week} from './components/Week';
-import {PostToolbar} from './components/PostToolBar';
-import {Post} from './components/Post';
+import HeaderBar from './components/HeaderBar';
+
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from './styles/mui-theme';
@@ -30,14 +24,7 @@ ReactDOM.render(
       <HeaderBar />
       <App>
         <Categories />
-          <Week />
-        <CreatePost />
-        <Welcome />
-        <Login />
         <PostList />
-          <PostToolbar />
-          <Post />
-          <NotFound />
       </App>
     </MainLayout>
   </MuiThemeProvider>,

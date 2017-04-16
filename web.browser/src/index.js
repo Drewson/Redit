@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { 
+  BrowserRouter as Router, 
+  Route,
+  Switch,
+  // Link,
+  // Redirect
+} from 'react-router-dom';
 
 import App from './containers/App';
 import PostList from './containers/PostList';
-import Categories from './containers/Categories';
+import CreatePost from './containers/CreatePost';
 import MainLayout from './layouts/MainLayout';
-
-import HeaderBar from './components/HeaderBar';
+import Welcome from './containers/Welcome';
+import Login from './containers/Login';
+// import Post from './components/Post';
 
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -20,13 +28,19 @@ injectTapEventPlugin();
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>
-    <MainLayout>
-      <HeaderBar />
-      <App>
-        <Categories />
-        <PostList />
-      </App>
-    </MainLayout>
+    <Router>
+      <MainLayout>
+        <App>
+          <Switch>
+            <Route path="/" exact component={Welcome} />
+            <Route path="/login" component={Login} />
+            <Route path="/posts" exact component={PostList} />
+            <Route path="/posts/new" exact component={CreatePost} />
+            <Route render={() => <h1>Page Not Found </h1>} />
+          </Switch>
+        </App>
+      </MainLayout>
+    </Router>
   </MuiThemeProvider>,
   document.getElementById('root')
 );

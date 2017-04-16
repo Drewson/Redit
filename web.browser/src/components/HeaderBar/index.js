@@ -9,8 +9,8 @@ import './styles.css';
 const HeaderBar = () =>  ( 
   <AppBar 
   iconElementRight={<div>
-    <FlatButton style={{color: 'white'}} title='Share New Link' />
-    <FlatButton style={{color: 'white'}} title='Logout' />
+    <FlatButton style={{color: 'white'}} label='Share New Link' />
+    <FlatButton style={{color: 'white'}} label='Logout' />
   </div>}
   /> 
   );

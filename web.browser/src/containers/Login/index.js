@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 
 class Login extends Component {
   render() {
-    return ( null )
+    return ( 
+      <div style={{ backgroundColor: 'black', height: '100%', width: '100%'}}>
+      Please ogin
+      </div>
+     )
   }
 };
 

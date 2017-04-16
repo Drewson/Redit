@@ -1,37 +1,27 @@
-import React, { Component } from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import {data} from '../../mock-data';
+import React from 'react';
+import {Card, CardTitle} from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
+import 'url-search-params-polyfill';
+import FlatButton from 'material-ui/FlatButton';
 
-
-class Post extends Component {
-
-  categoryChips( category, i ){
+function categoryChips( category ){
     return <Chip style={{ position:'absolute', right: '50px', bottom: '20px' }} >{ category }</Chip>
   }
 
-  makePost( post, i ){
-    return (
-      <Card key={i} style={{ width: '700px', padding: '10px', margin: '20px', position: 'relative' }} >
-        <CardTitle style={{ color: 'blue', padding: '0'}} title={ post.title } />
-        <CardHeader style={{}} >{ post.description }</CardHeader>
-        <div style={{ display: 'inline-block', width: '80%' }}>
-          <p style={{ display: 'inline-block' }} >Vote </p> {post.votes}
-        </div>
-        <div>
-          {post.categories.map( this.categoryChips )}
-        </div>
-      </Card>
-    )
-  }
-
-  render() {
-    return ( 
-      <div>
-        {data.posts.map(( post, i ) => this.makePost( post, i ))}
-      </div>
-    )
-  }
-};
+const Post = ({ post, updateVote}) => (
+  <Card style={{ width: '950px', padding: '10px', margin: '20px', position: 'relative' }} >
+    <CardTitle titleStyle={{ color: 'darkblue'}} style={{padding: '0px'}} title={ post.title } />
+    <p style={{padding: '0'}} >{ post.description }</p>
+    <div style={{ display: 'inline-block', width: '80%' }}>
+      <FlatButton onClick={() => updateVote( post.id )} >
+        &#x21e7;
+        Vote {post.votes}
+      </FlatButton> 
+    </div>
+    <div>
+      {post.categories.map( categoryChips )}
+    </div>
+  </Card>
+)
 
 export default Post;

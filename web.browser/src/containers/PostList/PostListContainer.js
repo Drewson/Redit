@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PostList from './PostList';
 import {data} from '../../mock-data';
-
+import Chip from 'material-ui/Chip';
 
 
 class PostListContainer extends Component {
@@ -42,16 +42,21 @@ class PostListContainer extends Component {
         this.forceUpdate();
     }
 
+    categoryChips( category ){
+        return <Chip style={{ position:'absolute', right: '50px', bottom: '20px' }} >{ category }</Chip>
+    }
+
     render() {
         return ( 
-        <div>
-            <PostList
-                posts={this.state.posts}
-                updateVote={this.updateVote}
-                sortByDate={() => this.sortByDate(this.state.posts)}
-                sortByUpvotes={() => this.sortByUpvotes(this.state.posts)}
-            />
-        </div>
+            <div>
+                <PostList
+                    posts={this.state.posts}
+                    categoryChips={this.categoryChips}
+                    updateVote={this.updateVote}
+                    sortByDate={() => this.sortByDate(this.state.posts)}
+                    sortByUpvotes={() => this.sortByUpvotes(this.state.posts)}
+                />
+            </div>
         )
     }
 };

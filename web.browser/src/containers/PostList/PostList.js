@@ -2,7 +2,7 @@ import React from 'react';
 import Post from './../../components/Post';
 import PostToolBar from '../../components/PostToolBar'
 
-const PostList = ({ posts, updateVote, sortByDate, sortByUpvotes }) => {
+const PostList = ({ posts, updateVote, sortByDate, sortByUpvotes, categoryChips }) => {
     
     return ( 
       <div> 
@@ -13,6 +13,7 @@ const PostList = ({ posts, updateVote, sortByDate, sortByUpvotes }) => {
              <div>
                 {posts.map(( post ) => 
                 ( <Post 
+                    categoryChips={categoryChips}
                     post={post}
                     key={post.id}
                     updateVote={updateVote}

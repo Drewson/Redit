@@ -1,15 +1,11 @@
 import React from 'react';
 import Post from './../../components/Post';
-import PostToolBar from '../../components/PostToolBar'
 
-const PostList = ({ posts, updateVote, sortByDate, sortByUpvotes, categoryChips }) => {
+
+const PostList = ({ posts, updateVote, categoryChips }) => {
     
     return ( 
       <div> 
-            <PostToolBar
-                sortByDate={sortByDate}
-                sortByUpvotes={sortByUpvotes}
-             />
              <div>
                 {posts.map(( post ) => 
                 ( <Post 
@@ -23,6 +19,7 @@ const PostList = ({ posts, updateVote, sortByDate, sortByUpvotes, categoryChips 
       </div>
     )    
 }
+
 
 export default PostList;
 

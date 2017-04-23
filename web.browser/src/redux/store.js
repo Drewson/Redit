@@ -1,12 +1,13 @@
 import { createStore, combineReducers } from 'redux';
-import { SortReducer, UpdateVoteReducer } from './reducer';
+import { SortReducer, PostsReducer } from './reducer';
 // import reduxLogger from 'redux-logger'
+
 
 
 const store = createStore(
     combineReducers({
-        UpdateVoteReducer,
-        SortReducer
+        posts: PostsReducer,
+        weeks: SortReducer
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )

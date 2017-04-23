@@ -5,23 +5,30 @@ import {
     UPDATE_VOTE
 } from './actions';
 
-export function UpdateVoteReducer(state = data.posts, action) {
+export function PostsReducer(state = data.posts, action) {
   switch (action.type) {
-      case UPDATE_VOTE:
-        return state.map(post => post.id === action.id && ( //ITS IMPURE!
-                post.votes += 1
-            ));
-      default:
+    case UPDATE_VOTE:
+        return state.map((post) => {
+            if (action.id === post.id) post.votes++;
+            return post;
+        });
+    case SORT_BY_DATE:
+        let sortedState = [].concat(state);
+        return sortedState.sort((a, b) => {
+            return b.id - a.id;
+        });
+    case SORT_BY_UPVOTE:
+        sortedState = [].concat(state);
+         return sortedState.sort((a, b) => {
+            return b.votes - a.votes;
+        });
+    default:
         return state;
     }
 }
 
-export function SortReducer(state = data, action) {
-  switch (action.type) {
-      case SORT_BY_DATE:
-        return state;
-      case SORT_BY_UPVOTE:
-        return state;
+export function SortReducer(state = data.posts, action) {
+  switch (action.type) {     
       default:
         return state;
     }
@@ -36,9 +43,9 @@ export function SortReducer(state = data, action) {
 // }
 
 // sortByDate( posts ){
-//     let sortedList = posts.sort( function(a, b ){
-//         return b.id - a.id;
-//     });
+    // let sortedList = posts.sort( function(a, b ){
+    //     return b.id - a.id;
+    // });
 //     this.setState( {
 //         orderby: 'newest',
 //         posts : sortedList
@@ -46,9 +53,9 @@ export function SortReducer(state = data, action) {
 // }
 
 // sortByUpvotes( posts ){
-//     let sortedList = posts.sort( function(a, b ){
-//         return b.votes - a.votes;
-//     });
+    // let sortedList = posts.sort( function(a, b ){
+    //     return b.votes - a.votes;
+    // });
 //     this.setState( {
 //         orderby: 'newest', posts : sortedList
 //     } )

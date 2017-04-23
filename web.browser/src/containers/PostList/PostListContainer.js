@@ -1,45 +1,40 @@
 import React, { Component } from 'react';
 import PostList from './PostList';
+import PostToolBar from '../../components/PostToolBar'
 import {data} from '../../mock-data';
 import Chip from 'material-ui/Chip';
+import { updateVote, sortByDate, sortByUpvotes } from '../../redux/actions';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+
+
 
 
 class PostListContainer extends Component {
 
     constructor(){
         super();
-        this.updateVote = this.updateVote.bind(this)
+        this.updateVote = this.updateVote.bind(this);
+        this.sortByDate = this.sortByDate.bind(this);
+        this.sortByUpvotes = this.sortByUpvotes.bind(this);
         this.state = {
             posts: data.posts,
             orderby: 'newest'
         }
     }
 
-    sortByUpvotes( posts ){
-        let sortedList = posts.sort( function(a, b ){
-            return b.votes - a.votes;
-        });
-        this.setState( { 
-            orderby: 'newest', posts : sortedList
-        } )
+    sortByDate() {
+        const filterType = 'date';
+        this.props.dispatch(sortByDate(filterType));
     }
 
-    sortByDate( posts ){
-        let sortedList = posts.sort( function(a, b ){
-            return b.id - a.id;
-        });
-        this.setState( { 
-            orderby: 'newest',
-            posts : sortedList
-        } )
+    sortByUpvotes(){
+        const filterType = 'upvotes';
+        this.props.dispatch(sortByUpvotes(filterType));
     }
 
     updateVote( postId ){
-        this.state.posts.map( (post) => postId === post.id && (
-            post.votes += 1
-        ));
-
-        this.forceUpdate();
+        if ( postId ) this.props.dispatch(updateVote(postId));
     }
 
     categoryChips( category ){
@@ -49,16 +44,30 @@ class PostListContainer extends Component {
     render() {
         return ( 
             <div>
+                <PostToolBar
+                    sortByDate={this.sortByDate}
+                    sortByUpvotes={this.sortByUpvotes}
+                />
                 <PostList
-                    posts={this.state.posts}
+                    posts={this.props.posts}
                     categoryChips={this.categoryChips}
                     updateVote={this.updateVote}
-                    sortByDate={() => this.sortByDate(this.state.posts)}
-                    sortByUpvotes={() => this.sortByUpvotes(this.state.posts)}
                 />
             </div>
         )
     }
 };
 
-export default PostListContainer;
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts
+  };
+}
+
+PostListContainer.propTypes = {
+  posts: PropTypes.arr,
+  dispatch: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps)(PostListContainer);

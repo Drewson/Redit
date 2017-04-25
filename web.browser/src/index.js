@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { 
   BrowserRouter as Router, 
   Route,
-  Switch,
+  Switch
   // Link,
   // Redirect
 } from 'react-router-dom';
@@ -12,7 +12,7 @@ import store from './redux/store';
 
 import App from './containers/App';
 import PostList from './containers/PostList';
-import CreatePost from './containers/CreatePost';
+// import CreatePost from './containers/CreatePost';
 import MainLayout from './layouts/MainLayout';
 import Welcome from './containers/Welcome';
 import Login from './containers/Login';
@@ -41,7 +41,7 @@ ReactDOM.render(
               <Route path="/" exact component={Welcome} />
               <Route path="/login" component={Login} />
               <Route path="/posts" exact component={PostList} />
-              <Route path="/posts/new" exact component={CreatePost} />
+              
               <Route render={() => <h1>Page Not Found </h1>} />
             </Switch>
           </App>

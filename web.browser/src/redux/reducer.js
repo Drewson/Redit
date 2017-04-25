@@ -5,6 +5,7 @@ import {
     UPDATE_VOTE
 } from './actions';
 
+
 export function PostsReducer(state = data.posts, action) {
   switch (action.type) {
     case UPDATE_VOTE:
@@ -13,12 +14,12 @@ export function PostsReducer(state = data.posts, action) {
             return post;
         });
     case SORT_BY_DATE:
-        let sortedState = [].concat(state);
+        let sortedState = [...state]
         return sortedState.sort((a, b) => {
             return b.id - a.id;
         });
     case SORT_BY_UPVOTE:
-        sortedState = [].concat(state);
+        sortedState = [...state]
          return sortedState.sort((a, b) => {
             return b.votes - a.votes;
         });
@@ -27,36 +28,9 @@ export function PostsReducer(state = data.posts, action) {
     }
 }
 
-export function SortReducer(state = data.posts, action) {
+export function WeeksReducer(state = data.weeks, action) {
   switch (action.type) {     
       default:
         return state;
     }
 }
-
-// updateVote( postId ){
-//     this.state.posts.map( (post) => postId === post.id && (
-//         post.votes += 1
-//     ));
-
-//     this.forceUpdate();
-// }
-
-// sortByDate( posts ){
-    // let sortedList = posts.sort( function(a, b ){
-    //     return b.id - a.id;
-    // });
-//     this.setState( {
-//         orderby: 'newest',
-//         posts : sortedList
-//     } )
-// }
-
-// sortByUpvotes( posts ){
-    // let sortedList = posts.sort( function(a, b ){
-    //     return b.votes - a.votes;
-    // });
-//     this.setState( {
-//         orderby: 'newest', posts : sortedList
-//     } )
-// }

@@ -7,11 +7,11 @@ const PostList = ({ posts, updateVote, categoryChips }) => {
     return ( 
       <div> 
              <div>
-                {posts.map(( post ) => 
+                {posts.map(( post, i ) => 
                 ( <Post 
                     categoryChips={categoryChips}
                     post={post}
-                    key={post.id}
+                    key={Date.now() + i}
                     updateVote={updateVote}
                     /> 
                 ))}

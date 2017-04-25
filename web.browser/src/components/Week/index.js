@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Divider from 'material-ui/Divider';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-import {data} from '../../mock-data';
+import { connect } from 'react-redux';
 
 class Week extends Component {
 
@@ -26,7 +26,7 @@ class Week extends Component {
     render(){
         return(
             <div>
-            { data.weeks.map( (week, i) => this.createList(week, i) )}
+            { this.props.weeks.map( (week, i) => this.createList(week, i) )}
             </div>
         )
         
@@ -34,4 +34,11 @@ class Week extends Component {
     
 }
 
-export default Week;
+function mapStateToProps(state) {
+  return {
+    weeks: state.weeks
+  };
+}
+
+
+export default connect(mapStateToProps)(Week);

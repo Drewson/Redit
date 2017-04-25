@@ -17,7 +17,7 @@ class Categories extends Component {
         />
         <Week />
         
-    </Drawer>
+      </Drawer>
     )
   }
 };

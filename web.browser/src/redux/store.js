@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import { SortReducer, PostsReducer } from './reducer';
+import { WeeksReducer, PostsReducer } from './reducer';
 // import reduxLogger from 'redux-logger'
 
 
@@ -7,7 +7,7 @@ import { SortReducer, PostsReducer } from './reducer';
 const store = createStore(
     combineReducers({
         posts: PostsReducer,
-        weeks: SortReducer
+        weeks: WeeksReducer
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )
